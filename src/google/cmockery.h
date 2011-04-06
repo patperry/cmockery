@@ -299,11 +299,11 @@
  */
 #define expect_assert_failure(function_call) \
   { \
-    const int expression = setjmp(global_expect_assert_env); \
+    const int result = setjmp(global_expect_assert_env); \
     global_expecting_assert = 1; \
-    if (expression) { \
+    if (result) { \
       print_message("Expected assertion %s occurred\n", \
-                    *((const char**)&expression)); \
+                    global_last_failed_assert); \
       global_expecting_assert = 0; \
     } else { \
       function_call ; \
@@ -355,6 +355,7 @@ typedef struct CheckParameterEvent {
 // Used by expect_assert_failure() and mock_assert().
 extern int global_expecting_assert;
 extern jmp_buf global_expect_assert_env;
+extern const char * global_last_failed_assert;
 
 // Retrieves a value for the given function, as set by "will_return".
 LargestIntegralType _mock(const char * const function, const char* const file,
