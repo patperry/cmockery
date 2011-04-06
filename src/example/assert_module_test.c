@@ -19,6 +19,7 @@
 #include <cmockery.h>
 
 extern void increment_value(int * const value);
+extern void decrement_value(int * const value);
 
 /* This test case will fail but the assert is caught by run_tests() and the
  * next test is executed. */
