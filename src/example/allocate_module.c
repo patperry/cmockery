@@ -19,6 +19,7 @@
 #ifdef HAVE_MALLOC_H
 #include <malloc.h>
 #endif
+#include <stdlib.h>
 #include <sys/types.h>
 
 #if UNIT_TESTING
