@@ -570,6 +570,7 @@
 				2239E4A8134C0D8C00076A2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2239E4C4134C0F4B00076A2C /* Build configuration list for PBXNativeTarget "assert_macro_test" */ = {
 			isa = XCConfigurationList;
@@ -578,6 +579,7 @@
 				2239E4C6134C0F4B00076A2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2239E4DC134C105C00076A2C /* Build configuration list for PBXNativeTarget "allocate_module_test" */ = {
 			isa = XCConfigurationList;
@@ -586,6 +588,7 @@
 				2239E4DE134C105C00076A2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		225F4191134C01210098CD37 /* Build configuration list for PBXProject "cmockery" */ = {
 			isa = XCConfigurationList;
