@@ -465,11 +465,11 @@ static void free_value(const void *value, void *cleanup_value_data) {
 static void free_symbol_map_value(const void *value,
                                   void *cleanup_value_data) {
     SymbolMapValue * const map_value = (SymbolMapValue*)value;
-    const unsigned int children = (unsigned int)cleanup_value_data;
+    const unsigned int children = (unsigned int)((char *)cleanup_value_data - (char *)NULL);
     assert_true(value);
     list_free(&map_value->symbol_values_list_head,
               children ? free_symbol_map_value : free_value,
-              (void*)(children - 1));
+              (char *)NULL + children - 1);
     free(map_value);
 }
 
@@ -1386,7 +1386,7 @@ void _test_free(void* const ptr, const char* file, const int line) {
     unsigned int i;
     char *block = (char*)ptr;
     MallocBlockInfo *block_info;
-    _assert_true((int)ptr, "ptr", file, line);
+    _assert_true(ptr != NULL, "ptr", file, line);
     block_info = (MallocBlockInfo*)(block - (MALLOC_GUARD_SIZE +
                                                sizeof(*block_info)));
     // Check the guard blocks.
@@ -1534,7 +1534,7 @@ static LONG WINAPI exception_filter(EXCEPTION_POINTERS *exception_pointers) {
 void vprint_message(const char* const format, va_list args) {
     char buffer[1024];
     vsnprintf(buffer, sizeof(buffer), format, args);
-    printf(buffer);
+    printf("%s", buffer);
 #ifdef _WIN32
     OutputDebugString(buffer);
 #endif // _WIN32
@@ -1544,7 +1544,7 @@ void vprint_message(const char* const format, va_list args) {
 void vprint_error(const char* const format, va_list args) {
     char buffer[1024];
     vsnprintf(buffer, sizeof(buffer), format, args);
-    fprintf(stderr, buffer);
+    fprintf(stderr, "%s", buffer);
 #ifdef _WIN32
     OutputDebugString(buffer);
 #endif // _WIN32
